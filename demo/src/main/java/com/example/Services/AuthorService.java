@@ -1,19 +1,19 @@
-import Entities.Authors;
+package com.example.Services;
+
+import com.example.Entities.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-
-
 public interface AuthorService extends Remote {
-    List<Authors> getAllAuthors() throws RemoteException;
+    List<Author> getAllAuthors() throws RemoteException;
 
-    Authors getAuthor(String authorId) throws RemoteException;
+    Author getAuthor(String authorId) throws RemoteException;
 
-    boolean addAuthor(Authors author) throws RemoteException;
+    boolean addAuthor(Author author) throws RemoteException;
 
-    boolean updateAuthor(Authors author) throws RemoteException;
+    boolean updateAuthor(Author author) throws RemoteException;
 
     boolean removeAuthor(String authorId) throws RemoteException;
 }

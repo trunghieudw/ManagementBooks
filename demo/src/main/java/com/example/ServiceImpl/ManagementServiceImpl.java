@@ -1,11 +1,8 @@
-package main.java.com.example.ServiceImpl;
+package com.example.ServiceImpl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import Services.BookService;
-import Services.LibraryService;
-import Services.ManagementService;
-import Services.UserService;
+import com.example.Services.*;
 
 public class ManagementServiceImpl extends UnicastRemoteObject implements ManagementService {
     private LibraryService libraryService;

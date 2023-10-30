@@ -1,12 +1,12 @@
-package main.java.com.example.ServiceImpl;
+package com.example.ServiceImpl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 
-import DAO.UserDAO;
-import Entities.Users;
-import Services.UserService;
+import com.example.DAO.*;
+import com.example.Entities.*;
+import com.example.Services.*;
 
 public class UserServiceImpl extends UnicastRemoteObject implements UserService {
     private UserDAO userDAO;
@@ -17,7 +17,7 @@ public class UserServiceImpl extends UnicastRemoteObject implements UserService 
     }
 
     @Override
-    public boolean addUser(Users user) throws RemoteException {
+    public boolean addUser(User user) throws RemoteException {
         return userDAO.addUser(user);
     }
 
@@ -27,12 +27,12 @@ public class UserServiceImpl extends UnicastRemoteObject implements UserService 
     }
 
     @Override
-    public boolean updateUser(Users user) throws RemoteException {
+    public boolean updateUser(User user) throws RemoteException {
         return userDAO.updateUser(user);
     }
 
     @Override
-    public Users getUser(String userId) throws RemoteException {
+    public User getUser(String userId) throws RemoteException {
         return userDAO.getUser(userId);
     }
 }

@@ -1,11 +1,11 @@
-package main.java.com.example.DAO;
+package com.example.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Entities.Users;
+import com.example.Entities.*;
 
 public class UserDAO {
     private Connection connection; // Thay bằng kết nối cơ sở dữ liệu thực tế
@@ -14,7 +14,7 @@ public class UserDAO {
         this.connection = connection;
     }
 
-    public boolean addUser(Users user) {
+    public boolean addUser(User user) {
         try {
             // Sử dụng PreparedStatement để thêm người dùng
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (userId, userName, email) VALUES (?, ?, ?)");
@@ -42,7 +42,7 @@ public class UserDAO {
         }
     }
 
-    public boolean updateUser(Users user) {
+    public boolean updateUser(User user) {
         try {
             // Cập nhật thông tin người dùng
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET userName = ?, email = ? WHERE userId = ?");
@@ -57,7 +57,7 @@ public class UserDAO {
         }
     }
 
-    public Users getUser(String userId) {
+    public User getUser(String userId) {
         try {
             // Truy vấn thông tin người dùng dựa trên userId
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE userId = ?");
@@ -66,7 +66,7 @@ public class UserDAO {
             if (resultSet.next()) {
                 String userName = resultSet.getString("userName");
                 String email = resultSet.getString("email");
-                return new Users(userId, userName, email);
+                return new User(userId, userName, email);
             }
         } catch (SQLException e) {
             e.printStackTrace();

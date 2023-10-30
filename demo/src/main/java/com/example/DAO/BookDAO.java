@@ -1,4 +1,4 @@
-package main.java.com.example.DAO;
+package com.example.DAO;
 
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Entities.Books;
+import com.example.Entities.*;
 
 
 public class BookDAO {
@@ -17,7 +17,7 @@ public class BookDAO {
     public BookDAO(Connection connection) {
         this.connection = connection;
     }
-    public boolean addBook(Books book) {
+    public boolean addBook(Book book) {
         try {
             // Sử dụng PreparedStatement để thêm sách vào cơ sở dữ liệu
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (bookId, title, author) VALUES (?, ?, ?)");
@@ -45,7 +45,7 @@ public class BookDAO {
         }
     }
 
-    public boolean updateBook(Books book) {
+    public boolean updateBook(Book book) {
         try {
             // Sử dụng PreparedStatement để cập nhật thông tin sách
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE books SET title = ?, author = ? WHERE bookId = ?");
@@ -60,7 +60,7 @@ public class BookDAO {
         }
     }
 
-    public Books getBook(String bookId) {
+    public Book getBook(String bookId) {
         try {
             // Truy vấn thông tin sách dựa trên bookId
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM books WHERE bookId = ?");
@@ -69,7 +69,7 @@ public class BookDAO {
             if (resultSet.next()) {
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
-                return new Books(bookId, title, author);
+                return new Book(bookId, title, author);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,8 +77,8 @@ public class BookDAO {
         return null;
     }
 
-    public List<Books> getAllBooks() throws RemoteException {
-        List<Books> books = new ArrayList<>();
+    public List<Book> getAllBooks() throws RemoteException {
+        List<Book> books = new ArrayList<>();
 
         // Thực hiện truy vấn cơ sở dữ liệu để lấy danh sách tất cả sách
         try {
@@ -91,7 +91,7 @@ public class BookDAO {
                 String title = resultSet.getString("title");
                 String author = resultSet.getString("author");
 
-                Books book = new Books(bookId, title, author);
+                Book book = new Book(bookId, title, author);
                 books.add(book);
             }
 

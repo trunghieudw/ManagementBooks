@@ -1,13 +1,13 @@
-package main.java.com.example.Entities;
+package com.example.Entities;
 
 import java.io.Serializable;
 
-public class Users implements Serializable {
+public class User implements Serializable {
     private String userId;
     private String userName;
     private String email;
 
-    public Users(String userId, String userName, String email) {
+    public User(String userId, String userName, String email) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;

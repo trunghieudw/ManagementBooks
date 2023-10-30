@@ -1,17 +1,17 @@
-package main.java.com.example.Entities;
+package com.example.Entities;
 
 import java.io.Serializable;
 
-public class Books implements Serializable {
+public class Book implements Serializable {
     private String title;
     private String author;
 
-    public Books(String title, String author) {
+    public Book(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
-    public Books(String bookId, String title, String author2) {
+    public Book(String bookId, String title, String author2) {
     }
 
     public String getTitle() {

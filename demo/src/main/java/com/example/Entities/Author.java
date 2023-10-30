@@ -1,12 +1,12 @@
-package main.java.com.example.Entities;
+package com.example.Entities;
 
 import java.io.Serializable;
 
-public class Authors implements Serializable {
+public class Author implements Serializable {
     private String authorId;
     private String name;
 
-    public Authors(String authorId, String name) {
+    public Author(String authorId, String name) {
         this.authorId = authorId;
         this.name = name;
     }

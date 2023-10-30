@@ -1,12 +1,16 @@
+package com.example.ServiceImpl;
+
+import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.util.List;
 
-import DAO.AuthorDAO;
-import Entities.Authors;
-import Services.AuthorService;
+import com.example.DAO.*;
+import com.example.Entities.*;
+import com.example.Services.*;
 
 public class AuthorServiceImpl extends UnicastRemoteObject implements AuthorService {
+    
     private AuthorDAO authorDAO;
 
     public AuthorServiceImpl(Connection connection) throws RemoteException {
@@ -15,7 +19,7 @@ public class AuthorServiceImpl extends UnicastRemoteObject implements AuthorServ
     }
 
     @Override
-    public boolean addAuthor(Authors author) throws RemoteException {
+    public boolean addAuthor(Author author) throws RemoteException {
         return authorDAO.addAuthor(author);
     }
 
@@ -25,17 +29,17 @@ public class AuthorServiceImpl extends UnicastRemoteObject implements AuthorServ
     }
 
     @Override
-    public boolean updateAuthor(Authors author) throws RemoteException {
+    public boolean updateAuthor(Author author) throws RemoteException {
         return authorDAO.updateAuthor(author);
     }
 
     @Override
-    public Authors getAuthor(String authorId) throws RemoteException {
+    public Author getAuthor(String authorId) throws RemoteException {
         return authorDAO.getAuthor(authorId);
     }
 
     @Override
-    public List<Authors> getAllAuthors() throws RemoteException {
+    public List<Author> getAllAuthors() throws RemoteException {
         return authorDAO.getAllAuthors();
     }
 }

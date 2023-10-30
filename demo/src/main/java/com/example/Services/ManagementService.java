@@ -1,4 +1,4 @@
-package main.java.com.example.Services;
+package com.example.Services;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

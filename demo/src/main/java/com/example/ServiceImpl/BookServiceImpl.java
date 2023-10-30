@@ -1,4 +1,4 @@
-package main.java.com.example.ServiceImpl;
+package com.example.ServiceImpl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -6,9 +6,9 @@ import java.sql.Connection;
 
 import java.util.List;
 
-import DAO.BookDAO;
-import Entities.Books;
-import Services.BookService;
+import com.example.DAO.*;
+import com.example.Entities.*;
+import com.example.Services.*;
 
 public class BookServiceImpl extends UnicastRemoteObject implements BookService {
     private BookDAO bookDAO;
@@ -19,7 +19,7 @@ public class BookServiceImpl extends UnicastRemoteObject implements BookService 
     }
 
     @Override
-    public boolean addBook(Books book) throws RemoteException {
+    public boolean addBook(Book book) throws RemoteException {
         return bookDAO.addBook(book);
     }
 
@@ -29,17 +29,17 @@ public class BookServiceImpl extends UnicastRemoteObject implements BookService 
     }
 
     @Override
-    public boolean updateBook(Books book) throws RemoteException {
+    public boolean updateBook(Book book) throws RemoteException {
         return bookDAO.updateBook(book);
     }
 
     @Override
-    public Books getBook(String bookId) throws RemoteException {
+    public Book getBook(String bookId) throws RemoteException {
         return bookDAO.getBook(bookId);
     }
 
     @Override
-    public List<Books> getAllBooks() throws RemoteException {
+    public List<Book> getAllBooks() throws RemoteException {
         return bookDAO.getAllBooks();
     }
 

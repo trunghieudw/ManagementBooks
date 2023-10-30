@@ -1,15 +1,14 @@
-package main.java.com.example.ServiceImpl;
+package com.example.ServiceImpl;
 
-import Entities.Books;
-import Services.LibraryService;
+import com.example.Entities.*;
+import com.example.Services.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryServiceImpl extends UnicastRemoteObject implements LibraryService {
-    private List<Books> books;
+    private List<Book> books;
 
     public LibraryServiceImpl() throws RemoteException {
         super();
@@ -21,7 +20,7 @@ public class LibraryServiceImpl extends UnicastRemoteObject implements LibrarySe
     }
 
     @Override
-    public List<Books> getAllBooks() throws RemoteException {
+    public List<Book> getAllBooks() throws RemoteException {
         return books;
     }
 
