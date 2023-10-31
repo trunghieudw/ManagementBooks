@@ -20,7 +20,7 @@ public class AuthorDAO {
     public boolean addAuthor(Author author) {
         try {
             // Sử dụng PreparedStatement để thêm tác giả vào cơ sở dữ liệu
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO authors (authorId, name) VALUES (?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO author (authorId, name) VALUES (?, ?)");
             preparedStatement.setString(1, author.getAuthorId());
             preparedStatement.setString(2, author.getName());
             int rowsAffected = preparedStatement.executeUpdate();
@@ -34,7 +34,7 @@ public class AuthorDAO {
     public boolean removeAuthor(String authorId) {
         try {
             // Sử dụng PreparedStatement để xoá tác giả dựa trên authorId
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM authors WHERE authorId = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM author WHERE authorId = ?");
             preparedStatement.setString(1, authorId);
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
@@ -47,7 +47,7 @@ public class AuthorDAO {
     public boolean updateAuthor(Author author) {
         try {
             // Sử dụng PreparedStatement để cập nhật thông tin tác giả
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE authors SET name = ? WHERE authorId = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE author SET name = ? WHERE authorId = ?");
             preparedStatement.setString(1, author.getName());
             preparedStatement.setString(2, author.getAuthorId());
             int rowsAffected = preparedStatement.executeUpdate();
@@ -61,7 +61,7 @@ public class AuthorDAO {
     public Author getAuthor(String authorId) {
         try {
             // Truy vấn thông tin tác giả dựa trên authorId
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM authors WHERE authorId = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM author WHERE authorId = ?");
             preparedStatement.setString(1, authorId);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -78,11 +78,11 @@ public class AuthorDAO {
         List<Author> result = new ArrayList<>();
         try {
             // Truy vấn tất cả tác giả
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Author");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM author");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String authorId = resultSet.getString("AuthorID");
-                String name = resultSet.getString("Name");
+                String authorId = resultSet.getString("authorId");
+                String name = resultSet.getString("name");
                 result.add(new Author(authorId, name));
             }
         } catch (SQLException e) {

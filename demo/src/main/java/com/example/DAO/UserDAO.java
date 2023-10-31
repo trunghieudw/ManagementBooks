@@ -20,7 +20,7 @@ public class UserDAO {
         try {
             // Sử dụng PreparedStatement để thêm người dùng
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO User (UserID, UserName, Email) VALUES (?, ?, ?)");
+                    .prepareStatement("INSERT INTO user (userId, userName, email) VALUES (?, ?, ?)");
             preparedStatement.setString(1, user.getUserId());
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.setString(3, user.getEmail());
@@ -35,7 +35,7 @@ public class UserDAO {
     public boolean removeUser(String userId) {
         try {
             // Xoá người dùng dựa trên userId
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE userId = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM user WHERE userId = ?");
             preparedStatement.setString(1, userId);
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
@@ -49,7 +49,7 @@ public class UserDAO {
         try {
             // Cập nhật thông tin người dùng
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE users SET userName = ?, email = ? WHERE userId = ?");
+                    .prepareStatement("UPDATE user SET userName = ?, email = ? WHERE userId = ?");
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getUserId());
@@ -64,7 +64,7 @@ public class UserDAO {
     public User getUser(String userId) {
         try {
             // Truy vấn thông tin người dùng dựa trên userId
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE userId = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE userId = ?");
             preparedStatement.setString(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -81,14 +81,14 @@ public class UserDAO {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try (
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user");
                 ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
-                String userId = resultSet.getString("user_id");
-                String username = resultSet.getString("username");
-
-                User user = new User(userId, username, username);
+                String userId = resultSet.getString("userId");
+                String username = resultSet.getString("userName");
+                String email= resultSet.getString("email");
+                User user = new User(userId, username,email);
                 users.add(user);
             }
         } catch (SQLException e) {

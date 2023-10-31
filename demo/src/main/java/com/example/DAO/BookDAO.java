@@ -20,7 +20,7 @@ public class BookDAO {
     public boolean addBook(Book book) {
         try {
             // Sử dụng PreparedStatement để thêm sách vào cơ sở dữ liệu
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (bookId, title, author) VALUES (?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO book (bookId, title, author) VALUES (?, ?, ?)");
             preparedStatement.setString(1, book.getBookId());
             preparedStatement.setString(2, book.getTitle());
             preparedStatement.setString(3, book.getAuthor());
@@ -35,7 +35,7 @@ public class BookDAO {
     public boolean removeBook(String bookId) {
         try {
             // Sử dụng PreparedStatement để xoá sách dựa trên bookId
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM books WHERE bookId = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM book WHERE bookId = ?");
             preparedStatement.setString(1, bookId);
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
@@ -63,7 +63,7 @@ public class BookDAO {
     public Book getBook(String bookId) {
         try {
             // Truy vấn thông tin sách dựa trên bookId
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM books WHERE bookId = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM book WHERE bookId = ?");
             preparedStatement.setString(1, bookId);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
