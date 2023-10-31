@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface LibraryService extends Remote {
     List<Book> getAllBooks() throws RemoteException;
+
     void borrowBook(String userId, String bookId) throws RemoteException;
+
     void returnBook(String userId, String bookId) throws RemoteException;
 }

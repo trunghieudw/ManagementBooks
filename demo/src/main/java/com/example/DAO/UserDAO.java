@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.Entities.*;
 
@@ -17,7 +19,8 @@ public class UserDAO {
     public boolean addUser(User user) {
         try {
             // Sử dụng PreparedStatement để thêm người dùng
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (userId, userName, email) VALUES (?, ?, ?)");
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("INSERT INTO users (userId, userName, email) VALUES (?, ?, ?)");
             preparedStatement.setString(1, user.getUserId());
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.setString(3, user.getEmail());
@@ -45,7 +48,8 @@ public class UserDAO {
     public boolean updateUser(User user) {
         try {
             // Cập nhật thông tin người dùng
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET userName = ?, email = ? WHERE userId = ?");
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("UPDATE users SET userName = ?, email = ? WHERE userId = ?");
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getUserId());
@@ -73,4 +77,25 @@ public class UserDAO {
         }
         return null;
     }
+
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users");
+                ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String userId = resultSet.getString("user_id");
+                String username = resultSet.getString("username");
+
+                User user = new User(userId, username, username);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+
 }
