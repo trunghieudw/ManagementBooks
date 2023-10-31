@@ -18,12 +18,12 @@ public class AuthorController {
     @Autowired
     private AuthorService authorService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Author> getAllAuthors() throws RemoteException {
         return authorService.getAllAuthors();
     }
 
-    @PostMapping
+    @PostMapping("{/addAuthor}")
     public ResponseEntity<Object> addAuthor(@RequestBody Author author) throws RemoteException {
         boolean isAdded = authorService.addAuthor(author);
         if (isAdded) {

@@ -6,6 +6,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+@Service
+
 public interface LibraryService extends Remote {
     List<Book> getAllBooks() throws RemoteException;
 

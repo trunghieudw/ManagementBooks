@@ -6,6 +6,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
+
 public interface AuthorService extends Remote {
     List<Author> getAllAuthors() throws RemoteException;
 

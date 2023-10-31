@@ -78,11 +78,11 @@ public class AuthorDAO {
         List<Author> result = new ArrayList<>();
         try {
             // Truy vấn tất cả tác giả
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM authors");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Author");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String authorId = resultSet.getString("authorId");
-                String name = resultSet.getString("name");
+                String authorId = resultSet.getString("AuthorID");
+                String name = resultSet.getString("Name");
                 result.add(new Author(authorId, name));
             }
         } catch (SQLException e) {

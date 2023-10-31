@@ -20,7 +20,7 @@ public class UserDAO {
         try {
             // Sử dụng PreparedStatement để thêm người dùng
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("INSERT INTO users (userId, userName, email) VALUES (?, ?, ?)");
+                    .prepareStatement("INSERT INTO User (UserID, UserName, Email) VALUES (?, ?, ?)");
             preparedStatement.setString(1, user.getUserId());
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.setString(3, user.getEmail());
