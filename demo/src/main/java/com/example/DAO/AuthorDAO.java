@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.example.Entities.*;
 
 public class AuthorDAO {
     private Connection connection; // Thay bằng kết nối cơ sở dữ liệu thực tế
-
     public AuthorDAO(Connection connection) {
         this.connection = connection;
     }
